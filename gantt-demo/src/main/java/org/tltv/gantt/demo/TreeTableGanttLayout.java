@@ -3,24 +3,18 @@ package org.tltv.gantt.demo;
 import java.util.Collection;
 import java.util.HashSet;
 
+import com.vaadin.ui.HorizontalLayout;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.tltv.gantt.Gantt;
 import org.tltv.gantt.client.shared.Step;
 
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.v7.ui.Tree.CollapseEvent;
-import com.vaadin.v7.ui.Tree.CollapseListener;
-import com.vaadin.v7.ui.Tree.ExpandEvent;
-import com.vaadin.v7.ui.Tree.ExpandListener;
-import com.vaadin.v7.ui.TreeTable;
 import com.vaadin.ui.UI;
 
 public class TreeTableGanttLayout extends HorizontalLayout implements GanttListener {
 
     Gantt gantt;
-    TreeTable ganttTable;
-    BeanItemContainer<Step> container;
+    //TreeTable ganttTable;
+    //BeanItemContainer<Step> container;
 
     public TreeTableGanttLayout(Gantt gantt) {
         this.gantt = gantt;
@@ -33,13 +27,13 @@ public class TreeTableGanttLayout extends HorizontalLayout implements GanttListe
         UI.getCurrent().getPage().getStyles()
                 .add(".v-table-table tr:first-child td.v-table-cell-content { height: 37px; }");
 
-        ganttTable = createTreeTableForGantt();
+        //ganttTable = createTreeTableForGantt();
 
-        addComponent(ganttTable);
+        //addComponent(ganttTable);
         addComponent(gantt);
     }
 
-    private TreeTable createTreeTableForGantt() {
+    /*private TreeTable createTreeTableForGantt() {
         container = new BeanItemContainer<Step>(Step.class);
 
         final TreeTable table = new TreeTable(null, container);
@@ -73,12 +67,12 @@ public class TreeTableGanttLayout extends HorizontalLayout implements GanttListe
         gantt.setVerticalScrollDelegateTarget(table);
         table.setColumnWidth(null, 500);
         return table;
-    }
+    }*/
 
     /**
      * Add all child steps directed by the TreeTable's hierarchical data source.
      */
-    private void addChildStepRecursively(TreeTable table, Object itemId, MutableInt index) {
+    /*private void addChildStepRecursively(TreeTable table, Object itemId, MutableInt index) {
         if (!table.hasChildren(itemId)) {
             return;
         }
@@ -93,13 +87,13 @@ public class TreeTableGanttLayout extends HorizontalLayout implements GanttListe
                 addChildStepRecursively(table, child, index);
             }
         }
-    }
+    }*/
 
     /**
      * Remove all child steps directed by the TreeTable's hierarchical data
      * source.
      */
-    private void removeChildStepRecursively(TreeTable table, Object itemId) {
+    /*private void removeChildStepRecursively(TreeTable table, Object itemId) {
         if (table.hasChildren(itemId)) {
             for (Object child : new HashSet<Object>(table.getChildren(itemId))) {
                 if (child instanceof Step) {
@@ -108,20 +102,20 @@ public class TreeTableGanttLayout extends HorizontalLayout implements GanttListe
                 }
             }
         }
-    }
+    }*/
 
     @Override
     public void stepModified(Step step) {
-        if (!ganttTable.containsId(step)) {
-            container.addBean(step);
-        } else {
-            ganttTable.refreshRowCache();
-        }
+        //if (!ganttTable.containsId(step)) {
+        //    container.addBean(step);
+        //} else {
+        //    ganttTable.refreshRowCache();
+        //}
     }
 
     @Override
     public void stepDeleted(Step step) {
-        container.removeItem(step);
+        //container.removeItem(step);
     }
 
     @Override
@@ -130,7 +124,7 @@ public class TreeTableGanttLayout extends HorizontalLayout implements GanttListe
         if (oldStepIndex < newStepIndex) {
             newStepIndex--;
         }
-        ganttTable.removeItem(step);
-        container.addItemAt(newStepIndex, step);
+        //ganttTable.removeItem(step);
+        //container.addItemAt(newStepIndex, step);
     }
 }

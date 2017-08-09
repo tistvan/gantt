@@ -59,14 +59,6 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.HasComponents;
 import com.vaadin.util.ReflectTools;
-import com.vaadin.v7.ui.Table;
-import com.vaadin.v7.ui.Table.ColumnResizeEvent;
-import com.vaadin.v7.ui.Table.ColumnResizeListener;
-import com.vaadin.v7.ui.Tree.CollapseEvent;
-import com.vaadin.v7.ui.Tree.CollapseListener;
-import com.vaadin.v7.ui.Tree.ExpandEvent;
-import com.vaadin.v7.ui.Tree.ExpandListener;
-import com.vaadin.v7.ui.TreeTable;
 
 /**
  * Gantt Chart server side component.
@@ -128,7 +120,7 @@ public class Gantt extends AbstractComponent implements HasComponents {
         }
     };
 
-    protected ExpandListener scrollDelegateTargetExpandListener = new ExpandListener() {
+    /*protected ExpandListener scrollDelegateTargetExpandListener = new ExpandListener() {
 
         @Override
         public void nodeExpand(ExpandEvent event) {
@@ -150,7 +142,7 @@ public class Gantt extends AbstractComponent implements HasComponents {
         public void columnResize(ColumnResizeEvent event) {
             getRpcProxy(GanttClientRpc.class).updateDelegateTargetHeight();
         }
-    };
+    };*/
 
     public Gantt() {
         registerRpc(rpc);
@@ -794,7 +786,7 @@ public class Gantt extends AbstractComponent implements HasComponents {
      * @param table
      *            Target Table component.
      */
-    public void setVerticalScrollDelegateTarget(Table table) {
+    /*public void setVerticalScrollDelegateTarget(Table table) {
         if (table != null) {
             table.setHeight(getHeight(), getHeightUnits());
         }
@@ -808,7 +800,7 @@ public class Gantt extends AbstractComponent implements HasComponents {
             table.setImmediate(true);
             addScrollDelegateTargetListeners(table);
         }
-    }
+    }*/
 
     /**
      * Set target Grid component that will scroll vertically with the Gantt
@@ -824,7 +816,7 @@ public class Gantt extends AbstractComponent implements HasComponents {
      * Grid's internal column reordering and sorting are not listened by Gantt
      * and can be handled explicitly via Grid's server side event listeners.
      *
-     * @param table
+     * @param grid
      *            Target Grid component.
      */
     public <T> void setVerticalScrollDelegateTarget(Grid<T> grid) {
@@ -846,20 +838,20 @@ public class Gantt extends AbstractComponent implements HasComponents {
         return new StepComponent(this, step);
     }
 
-    protected void addScrollDelegateTargetListeners(Table table) {
+    /*protected void addScrollDelegateTargetListeners(Table table) {
         table.addColumnResizeListener(scrollDelegateTargetColumnResizeListener);
         if (table instanceof TreeTable) {
             ((TreeTable) table).addExpandListener(scrollDelegateTargetExpandListener);
             ((TreeTable) table).addCollapseListener(scrollDelegateTargetCollapseListener);
         }
-    }
+    }*/
 
     protected void addScrollDelegateTargetListeners(Grid grid) {
 
     }
 
     protected void cleanScrollDelegateTargetListeners() {
-        if (getState().verticalScrollDelegateTarget instanceof Table) {
+        /*if (getState().verticalScrollDelegateTarget instanceof Table) {
             ((Table) getState().verticalScrollDelegateTarget)
                     .removeColumnResizeListener(scrollDelegateTargetColumnResizeListener);
         }
@@ -868,7 +860,7 @@ public class Gantt extends AbstractComponent implements HasComponents {
                     .removeExpandListener(scrollDelegateTargetExpandListener);
             ((TreeTable) getState().verticalScrollDelegateTarget)
                     .removeCollapseListener(scrollDelegateTargetCollapseListener);
-        }
+        }*/
     }
 
     @Override

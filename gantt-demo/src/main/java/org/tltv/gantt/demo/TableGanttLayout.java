@@ -1,17 +1,15 @@
 package org.tltv.gantt.demo;
 
+import com.vaadin.ui.HorizontalLayout;
 import org.tltv.gantt.Gantt;
 import org.tltv.gantt.client.shared.Step;
 
-import com.vaadin.v7.data.util.BeanItemContainer;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.v7.ui.Table;
 import com.vaadin.ui.UI;
 
 public class TableGanttLayout extends HorizontalLayout implements GanttListener {
 
     Gantt gantt;
-    Table ganttTable;
+    //Table ganttTable;
 
     public TableGanttLayout(Gantt gantt) {
         this.gantt = gantt;
@@ -24,13 +22,13 @@ public class TableGanttLayout extends HorizontalLayout implements GanttListener 
         UI.getCurrent().getPage().getStyles()
                 .add(".v-table-table tr:first-child td.v-table-cell-content { height: 37px; }");
 
-        ganttTable = createTableForGantt();
+        //ganttTable = createTableForGantt();
 
-        addComponent(ganttTable);
+        //addComponent(ganttTable);
         addComponent(gantt);
     }
 
-    private Table createTableForGantt() {
+    /*private Table createTableForGantt() {
         BeanItemContainer<Step> container = new BeanItemContainer<Step>(Step.class);
 
         Table table = new Table(null, container);
@@ -43,21 +41,21 @@ public class TableGanttLayout extends HorizontalLayout implements GanttListener 
         gantt.setVerticalScrollDelegateTarget(table);
         table.setColumnWidth(null, 500);
         return table;
-    }
+    }*/
 
     @SuppressWarnings("unchecked")
     @Override
     public void stepModified(Step step) {
-        if (!ganttTable.containsId(step)) {
+        /*if (!ganttTable.containsId(step)) {
             ((BeanItemContainer<Step>) ganttTable.getContainerDataSource()).addBean(step);
         } else {
             ganttTable.refreshRowCache();
-        }
+        }*/
     }
 
     @Override
     public void stepDeleted(Step step) {
-        ganttTable.removeItem(step);
+        //ganttTable.removeItem(step);
     }
 
     @Override
@@ -65,7 +63,7 @@ public class TableGanttLayout extends HorizontalLayout implements GanttListener 
         if (oldStepIndex < newStepIndex) {
             newStepIndex--;
         }
-        ganttTable.removeItem(step);
-        ((BeanItemContainer<Step>) ganttTable.getContainerDataSource()).addItemAt(newStepIndex, step);
+        //ganttTable.removeItem(step);
+        //((BeanItemContainer<Step>) ganttTable.getContainerDataSource()).addItemAt(newStepIndex, step);
     }
 }

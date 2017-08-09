@@ -6,23 +6,14 @@ import java.util.Collection;
 import com.vaadin.data.HasValue.ValueChangeEvent;
 import com.vaadin.data.HasValue.ValueChangeListener;
 import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.Button;
+import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.NativeSelect;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
 
 public class Util {
 
     public static TextField createNumberEditor(String caption, float value, final Component component,
-            final NumberValueChange valueChange) {
+                                               final NumberValueChange valueChange) {
         TextField field = new TextField(caption);
         field.setMaxLength(5);
         field.setValue("" + value);

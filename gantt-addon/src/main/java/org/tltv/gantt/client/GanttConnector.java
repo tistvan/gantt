@@ -64,8 +64,6 @@ import com.vaadin.client.widgets.Grid;
 import com.vaadin.shared.Connector;
 import com.vaadin.shared.MouseEventDetails;
 import com.vaadin.shared.ui.Connect;
-import com.vaadin.v7.client.ui.VScrollTable;
-import com.vaadin.v7.client.ui.table.TableConnector;
 
 /**
  * Connector for client side GWT {@link GanttWidget} and server side
@@ -87,7 +85,7 @@ public class GanttConnector extends AbstractHasComponentsConnector {
 
     ComponentConnector delegateScrollConnector;
     FocusableScrollPanel delegateScrollPanelTarget;
-    VScrollTable delegateScrollTableTarget;
+    //VScrollTable delegateScrollTableTarget;
     Grid<?> delegateScrollGridTarget;
     HandlerRegistration ganttScrollHandlerRegistration;
     HandlerRegistration scrollDelegateHandlerRegistration;
@@ -557,16 +555,16 @@ public class GanttConnector extends AbstractHasComponentsConnector {
         unRegisterScrollDelegateHandlers();
 
         delegateScrollConnector = null;
-        delegateScrollTableTarget = null;
+        //delegateScrollTableTarget = null;
         delegateScrollPanelTarget = null;
-        if (c instanceof TableConnector) {
+        /*if (c instanceof TableConnector) {
             delegateScrollConnector = (TableConnector) c;
             VScrollTable scrolltable = ((TableConnector) c).getWidget();
             delegateScrollTableTarget = scrolltable;
             delegateScrollPanelTarget = scrolltable.scrollBodyPanel;
             registerScrollDelegateHandlers();
 
-        } else if (c instanceof GridConnector) {
+        } else*/ if (c instanceof GridConnector) {
             delegateScrollConnector = (GridConnector) c;
             delegateScrollGridTarget = ((GridConnector) c).getWidget();
             registerScrollDelegateHandlers();
@@ -583,18 +581,18 @@ public class GanttConnector extends AbstractHasComponentsConnector {
         if (delegateScrollConnector != null) {
             delegateScrollConnector.removeStateChangeHandler(scrollDelegateTargetStateChangeHandler);
         }
-        if (delegateScrollTableTarget != null) {
+        /*if (delegateScrollTableTarget != null) {
             getLayoutManager().removeElementResizeListener(delegateScrollTableTarget.getElement(),
                     scrollDelegateTargetResizeListener);
-        }
+        }*/
     }
 
     void registerScrollDelegateHandlers() {
         delegateScrollConnector.addStateChangeHandler(scrollDelegateTargetStateChangeHandler);
-        if (delegateScrollTableTarget != null) {
+        /*if (delegateScrollTableTarget != null) {
             getLayoutManager().addElementResizeListener(delegateScrollTableTarget.getElement(),
                     scrollDelegateTargetResizeListener);
-        }
+        }*/
     }
 
     void updateVerticalScrollDelegation() {
@@ -647,13 +645,13 @@ public class GanttConnector extends AbstractHasComponentsConnector {
     }
 
     void updateDelegateTargetHeight() {
-        if (delegateScrollTableTarget == null && delegateScrollGridTarget == null) {
+        if (/*delegateScrollTableTarget == null &&*/ delegateScrollGridTarget == null) {
             return;
         }
 
         boolean tableHorScrollbarVisible = false;
         int headerHeight = 0;
-        if (delegateScrollTableTarget != null && delegateScrollTableTarget.tHead != null) {
+        /*if (delegateScrollTableTarget != null && delegateScrollTableTarget.tHead != null) {
             // update table header height to match the Gantt widget's header
             // height
             int tHeadBorder = WidgetUtil.measureVerticalBorder(delegateScrollTableTarget.tHead.getElement());
@@ -663,7 +661,7 @@ public class GanttConnector extends AbstractHasComponentsConnector {
 
             int border = WidgetUtil.measureVerticalBorder(delegateScrollPanelTarget.getElement());
             tableHorScrollbarVisible = border >= WidgetUtil.getNativeScrollbarSize();
-        }
+        }*/
         if (delegateScrollGridTarget != null && delegateScrollGridTarget.getHeaderRowCount() == 1) {
             // update Grid header height to match the Gantt widget's header
             // height when there is only one header row.

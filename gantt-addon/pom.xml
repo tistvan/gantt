@@ -11,8 +11,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>8.1.0.beta3</vaadin.version>
-		<vaadin.plugin.version>8.1.0.beta3</vaadin.plugin.version>
+		<vaadin.version>8.1.1</vaadin.version>
+		<vaadin.plugin.version>8.1.1</vaadin.plugin.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<!-- ZIP Manifest fields -->
@@ -56,18 +56,12 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-server</artifactId>
+			<version>${vaadin.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-compatibility-server</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-compatibility-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-compatibility-shared</artifactId>
+			<artifactId>vaadin-client</artifactId>
+			<version>${vaadin.version}</version>
 		</dependency>
 		
 		<!-- This can be replaced with TestNG or some other test framework supported by the surefire plugin -->
